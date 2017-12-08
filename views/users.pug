@@ -1,0 +1,10 @@
+Currently Active Users:
+
+ul
+  for user in users
+    li user: #{user.name}
+    ul password: #{user.password}
+    ul two factor authentication: #{user.twofactor}
+
+a(href='add-users') Add a new user<br>
+a(href='/') Login Page

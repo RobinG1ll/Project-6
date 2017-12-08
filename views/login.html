@@ -1,0 +1,21 @@
+<html>
+<body>
+<form action="/login-check" method="post">
+Username: <input type="text" name="name" placeholder="Enter Username"><br>
+Password: <input type="text" name="password" placeholder="Enter Password"><br>
+<input type="checkbox" id="twofactor" name="twofactor" value="enabled">Two-factor authentication
+    <input type="text" name="token" id="token" placeholder="Enter token here" style="display:none"><br>
+<input type="submit" value="Login!">
+<br><br>
+<a href="/users">User Administration</a>
+</body>
+<script>
+    document.getElementById("twofactor").addEventListener("click", function(){
+        if(document.getElementById("twofactor").checked){
+            document.getElementById("token").style.display = "block";
+         } else {
+            document.getElementById("token").style.display = "none";
+        }
+    })
+</script>
+</html>

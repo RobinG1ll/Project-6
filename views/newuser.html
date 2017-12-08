@@ -1,0 +1,33 @@
+<html>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<body>
+<form action="/adduser" method="post">
+Username: <input type="text" name="name"><br>
+password: <input type="text" name="password"><br>
+<input type="checkbox" id="twofactor" name="twofactor" value="enabled">Enable two-factor authentication
+    <input type="text" name="token" id="token" placeholder="Enter token here" style="display:none"><br>
+<input type="submit" value="Create User">
+<img src="" alt="" id="qrcode_img"><br>
+</body>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url:"/generate",
+            type:"post",
+            success:function (resp) {
+                console.log(resp)
+                document.getElementById("twofactor").addEventListener("click", function(){
+                    console.log(document.getElementById("twofactor").value)
+                    if(document.getElementById("twofactor").checked){
+                        document.getElementById("qrcode_img").src = resp.url;
+                        document.getElementById("token").style.display = "block";
+                    }else{
+                        document.getElementById("qrcode_img").src = "";
+                        document.getElementById("token").style.display = "none";
+                    }
+                })
+            }
+        })
+    })
+</script>
+</html>
